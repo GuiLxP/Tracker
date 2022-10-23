@@ -1,5 +1,4 @@
 <template>
-  <!-- <header :style="estilos"> -->
   <header>
     <h1>
       <img src="../assets/logo.png" alt="logoApplication Tracker">
