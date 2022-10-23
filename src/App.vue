@@ -1,9 +1,9 @@
 <template>
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline" :class="{ 'modo-escuro': modoEscuroAtivo }">
     <div class="column is-one-quarter">
-      <BarraLateral />
+      <BarraLateral @aoTemaAlterado="trocarTema"/>
     </div>
-    <div class="column is-three-quarter">
+    <div class="column is-three-quarter conteudo">
       <Formulario @aoSalvarTarefa="salvarTarefa" />
       <div class="lista">
         <Tarefa v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa" />
@@ -29,16 +29,21 @@ export default defineComponent({
     BarraLateral,
     Formulario,
     Tarefa,
-    Box
+    Box,
+
   },
   data() {
     return {
-      tarefas: [] as ITarefa[]
+      tarefas: [] as ITarefa[],
+      modoEscuroAtivo: false
     }
   },
   methods: {
     salvarTarefa(tarefa: ITarefa) {
       this.tarefas.push(tarefa)
+    },
+    trocarTema(modoEscuroAtivo: boolean) {
+      this.modoEscuroAtivo = modoEscuroAtivo
     }
   },
   computed: {
@@ -54,4 +59,18 @@ export default defineComponent({
 .lista {
   padding: 1.25rem;
 }
+main {
+  --bg-primario: #FFF;
+  --texto-primario: #000;
+}
+
+main.modo-escuro {
+  --bg-primario: #2B2D42;
+  --texto-primario: #DDD;
+}
+
+.conteudo {
+  background-color: var(--bg-primario);
+}
 </style>
+
