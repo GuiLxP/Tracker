@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
+//componente da barra
 export default defineComponent({
   name: "BarraLateral",
   emits: [ 'aoTemaAlterado' ],
